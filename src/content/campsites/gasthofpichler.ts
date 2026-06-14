@@ -2,11 +2,12 @@ import type { CampsiteConfig } from "../types";
 
 /**
  * Landhaus-Camping Pichler — honest, source-grounded config (caged build).
- * Quelle: gasthofpichler.at (raw/digest). Bildlage: nur ZWEI eigene Fotos ≥ 800px sind
- * provenance-bound verwendbar (Luftbild des Gasthofs + Wiese mit Reisemobil); alle übrigen
- * Platz-Fotos sind tooSmall, der Rest stammt von FREMDEN Plätzen → abgelehnt. Darum:
- * Hero = Luftbild, Atempause = Wiese, bild-arme Sektionen (pillars/camping.features/galerie)
- * bleiben bewusst leer (Template blendet sie sauber aus). Preise real aus prices.md
+ * Quelle: gasthofpichler.at (raw/digest) + Nach-Scrape. Bildlage: zwei eigene Fotos ≥ 800px
+ * (Luftbild des Gasthofs 1024px + Wiese mit Reisemobil 1110px) tragen Hero + Atempause; der
+ * Nach-Scrape ergänzte zwei weitere provenance-gesicherte Pichler-Fotos (Raddörfl-Holzhaus,
+ * Landhaus-Zimmer, je ~500px) → camping.features. Alle übrigen neuen Fotos stammen von FREMDEN
+ * Plätzen (camping.info-Listings anderer Campingplätze) → abgelehnt. pillars/galerie bleiben
+ * mangels weiterer eigener Motive leer (Template blendet sie sauber aus). Preise real aus prices.md
  * (à-la-carte: pro Person + Fahrzeug) → arithmetische Richtpreise „2 Pers. + Fahrzeug".
  * Empfehlung: Tier 1b Foto-Enrichment für volle Sektionen.
  */
@@ -68,12 +69,24 @@ const gasthofpichler: CampsiteConfig = {
     line: "Naturbelassener Rasen, alte Bäume und der Gasthof gleich nebenan.",
   },
 
-  // Bild-arm: keine ehrlich bebilderbaren Feature-Karten übrig → Sektion blendet sich aus.
+  // Nach-Scrape: zwei weitere eigene Fotos (Raddörfl-Holzhaus + Zimmer) provenance-gesichert
+  // (camping.info / booking.com „gasthof-pichler") → zwei ehrliche Feature-Karten.
   camping: {
     heading: "Camping am Murradweg",
     intro:
       "Ebener, naturbelassener Rasenplatz direkt beim Gasthof: neu renovierte Duschen und WC, Aufenthaltsraum mit Getränke-Selbstbedienung, Trockenraum, Garage und ein Erlebnisspielplatz für die Kinder.",
-    features: [],
+    features: [
+      {
+        title: "Raddörfl mit Holzhäusern",
+        text: "Sechs gemütliche Holzhäuser unter alten Bäumen — dein festes Dach am Murradweg, wenn du das Zelt zu Hause lassen willst.",
+        image: { src: `${IMG}/raddoerfl-holzhaus.webp`, alt: "Holzhaus im Raddörfl von Landhaus-Camping Pichler" },
+      },
+      {
+        title: "Zimmer im Landhaus",
+        text: "Wer es lieber fest mag, schläft im holzvertäfelten Landhaus-Zimmer mit Balkonzugang gleich neben dem Platz.",
+        image: { src: `${IMG}/zimmer.webp`, alt: "Holzvertäfeltes Landhaus-Zimmer beim Gasthof Pichler" },
+      },
+    ],
   },
 
   anreise: {
